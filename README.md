@@ -6,13 +6,13 @@
 
 1. Clone this project using 
 
-        ```git clone https://github.com/sumitaryal/8-puzzle-visualizer.git```
+        git clone https://github.com/sumitaryal/8-puzzle-visualizer.git
 
 2. Go to the project directory 
 
 3. Run the following command
 
-        ```python main.py```
+        python main.py
 
 Here are the snippent of the program
 

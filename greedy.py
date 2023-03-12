@@ -8,7 +8,6 @@ def greedy(initial_state, goal_state):
     If no path is found, returns None.
     """
     queue = [(manhattan_distance(initial_state, goal_state), initial_state, [])]
-    print(queue)
     visited = set()
 
     while queue:

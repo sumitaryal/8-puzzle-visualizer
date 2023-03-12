@@ -36,21 +36,22 @@ def apply_action(state, action):
 def find_blank(state):
     for i in range(3):
         for j in range(3):
-            if state[i][j] is None:
+            if state[i][j] is 0:
                 return i, j
-
+            
 def manhattan_distance(state, goal_state):
     """
     Calculates the Manhattan distance heuristic for the given state and goal state.
     """
     distance = 0
-
-    for i in range(3):
-        for j in range(3):
-            if state[i][j] is not None:
-                row, col = find_tile(goal_state, state[i][j])
-                distance += abs(i - row) + abs(j - col)
-
+    for i in range(len(state)):
+        for j in range(len(state[0])):
+            if state[i][j] is not 0:
+                goal_i, goal_j = find_tile(goal_state, state[i][j])
+                distance += abs(i - goal_i) + abs(j - goal_j)
+            else:
+                # Return a high value if None is in the state
+                distance += 9999
     return distance
 
 def find_tile(state, tile):

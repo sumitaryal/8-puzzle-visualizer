@@ -6,9 +6,9 @@ from dfs import dfs
 from greedy import greedy
 from astar import a_star
 # Create initial and goal states
-INITIAL_STATE = [[7, 2, 6], [3, 8, 4], [1, 5, None]]
-# INITIAL_STATE = [[1, 2, 3], [4, 5, 6], [7, None, 8]]
-GOAL_STATE = [[1, 2, 3], [4, 5, 6], [7, 8, None]]
+INITIAL_STATE = [[7, 2, 6], [3, 8, 4], [1, 5, 0]]
+# INITIAL_STATE = [[1, 2, 3], [4, 5, 6], [7, 0, 8]]
+GOAL_STATE = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 class PuzzleSolverVisualizer(tk.Frame):
     def __init__(self, master=None):
@@ -53,7 +53,7 @@ class PuzzleSolverVisualizer(tk.Frame):
                 x2 = x1 + box_width
                 y2 = y1 + box_height
                 number = INITIAL_STATE[i][j]
-                if number is not None:
+                if number is not 0:
                     self.canvas.create_rectangle(x1, y1, x2, y2, fill='white', outline='black')
                     self.canvas.create_text(x1 + box_width//2, y1 + box_height//2, text=str(number))
                 else:
@@ -120,7 +120,7 @@ class PuzzleSolverVisualizer(tk.Frame):
                     x2 = x1 + box_width
                     y2 = y1 + box_height
                     number = state[row][col]
-                    if number is not None:
+                    if number is not 0:
                         self.canvas.create_rectangle(x1, y1, x2, y2, fill='white', outline='black')
                         self.canvas.create_text(x1 + box_width//2, y1 + box_height//2, text=str(number))
                     else:
@@ -136,11 +136,13 @@ class PuzzleSolverVisualizer(tk.Frame):
         # Find the row and column of the blank tile
         for row in range(3):
             for col in range(3):
-                if state[row][col] is None:
+                if state[row][col] is 0:
                     return row, col
-    
+
+def main():
+   root = tk.Tk()
+   app = PuzzleSolverVisualizer(master=root)
+   app.mainloop()   
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = PuzzleSolverVisualizer(master=root)
-    app.mainloop()
+    main()

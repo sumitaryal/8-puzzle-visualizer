@@ -1,5 +1,5 @@
 import heapq
-from helper import apply_action, get_actions, manhattan_distance
+from helper import apply_action, get_actions, number_of_misplaced_tiles
 
 def greedy(initial_state, goal_state):
     """
@@ -7,7 +7,7 @@ def greedy(initial_state, goal_state):
     Returns the path as a list of actions (e.g., ["Up", "Left", "Down"]).
     If no path is found, returns None.
     """
-    queue = [(manhattan_distance(initial_state, goal_state), initial_state, [])]
+    queue = [(number_of_misplaced_tiles(initial_state, goal_state), initial_state, [])]
     visited = set()
 
     while queue:
@@ -25,6 +25,6 @@ def greedy(initial_state, goal_state):
             new_state = apply_action(state, action)
 
             if tuple(map(tuple, new_state)) not in visited:
-                heapq.heappush(queue, (manhattan_distance(new_state, goal_state), new_state, actions + [action]))
+                heapq.heappush(queue, (number_of_misplaced_tiles(new_state, goal_state), new_state, actions + [action]))
 
     return None

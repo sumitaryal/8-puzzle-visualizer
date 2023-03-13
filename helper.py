@@ -62,3 +62,14 @@ def find_tile(state, tile):
         for j in range(3):
             if state[i][j] == tile:
                 return i, j
+            
+def number_of_misplaced_tiles(state, goal_state):
+    """
+    Calculates the number of misplaced tiles heuristic for the given state and goal state.
+    """
+    misplaced_tiles = 0
+    for i in range(len(state)):
+        for j in range(len(state[0])):
+            if state[i][j] != goal_state[i][j]:
+                misplaced_tiles += 1
+    return misplaced_tiles
